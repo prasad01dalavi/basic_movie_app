@@ -12,6 +12,7 @@
 </p> 
  
 3. Update/Delete Movie:
+When we click on Movie Name, we will be directed to take action(update/delete) on it
 <p align="center">
  <img src="update_delete.jpg" width=800 height=300>
 </p> 
