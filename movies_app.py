@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
-import json
 
 app = Flask(__name__)
 app.config[
@@ -38,7 +37,6 @@ def add():           # This url will be redirected
 @app.route('/process', methods=['POST'])  # http://127.0.0.1:5000/process
 def process():
     # accessing posted data
-    print request.form
     name = request.form['name']
     timing = request.form['timing']
     location = request.form['location']
