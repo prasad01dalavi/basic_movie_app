@@ -26,12 +26,9 @@
       <div class="jumbotron">
         <h1>My Movies</h1>
         <a type="button" class="btn btn-link" href="{{ url_for('add') }}">Add New Movie</a>
-        <!-- when click on the link redirect the url to "http://127.0.0.1:5000/sign" -->
       </div>
 
-      <!-- following will be executed in "http://127.0.0.1:5000/sign" url -->
       {% for data in all_data %}
-        {{ data.id}}
         <div class="page-header">
           <h1><a onclick="window.open('update?id={{data.id}}', '_self')">{{ data.name }}</a></h1>
         </div>
@@ -40,8 +37,7 @@
           <p>Location: {{ data.location }}</p>
         </div>
       {% endfor %}
-
-    </div> <!-- /container -->
+    </div> 
 
   </body>
 </html>

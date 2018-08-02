@@ -5,7 +5,7 @@ import json
 
 app = Flask(__name__)
 app.config[
-    'SQLALCHEMY_DATABASE_URI'] = 'mysql://root:lmtech123@localhost:3306/movies'
+    'SQLALCHEMY_DATABASE_URI'] = 'mysql://root:lmtech123@localhost:3306/movies_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # let me know the changes in the database but i don't want to know, just
 # setting some value (False) to avoid overhead warning
@@ -22,9 +22,6 @@ class Movies(db.Model):
     timing = db.Column(db.String(200))
     # place where the movie will be played
     location = db.Column(db.String(200))
-
-    # time_created = Column(DateTime(timezone=True), server_default=func.now())
-    # time_updated = Column(DateTime(timezone=True), onupdate=func.now())
 
 
 @app.route('/')   # http://127.0.0.1:5000/
@@ -53,17 +50,46 @@ def process():
     return redirect(url_for('index'))   # redirects to the view for /index
 
 
-@app.route('/update')  # http://127.0.0.1:5000/process
+@app.route('/update', methods=['GET', 'POST'])  # http://127.0.0.1:5000/update
 def update():
+    if request.method == 'POST':
+        post_request_data = request.values
+        movie_id = post_request_data['id'][0]
+
+        movie_edit = Movies.query.get(movie_id)
+        movie_edit.name = request.form['name']
+        movie_edit.timing = request.form['timing']
+        movie_edit.location = request.form['location']
+        db.session.commit()  # Save the changes in db
+
+        # Now after editing show the home page
+        all_data = Movies.query.all()  # Gives all data from Movies table
+        return render_template('home.html', all_data=all_data)
+
+    else:
+        get_request_data = request.values
+        movie_id = get_request_data['id'][0]
+        # Now I have to get the movies record having id=movie_id
+
+        requested_movie_object = Movies.query.get(movie_id)
+        movie_name = requested_movie_object.name
+        movie_timing = requested_movie_object.timing
+        movie_location = requested_movie_object.location
+        movie_id = requested_movie_object.id
+        return render_template('edit_movie.html', name=movie_name, timing=movie_timing, location=movie_location, id=movie_id)
+
+
+@app.route('/delete', methods=['POST'])  # http://127.0.0.1:5000/process
+def delete():
     get_request_data = request.values
     movie_id = get_request_data['id'][0]
-    # Now I have to return the movies record having id=movie_id
+    movie = Movies.query.get(movie_id)
+    db.session.delete(movie)
+    db.session.commit()
 
-    requested_movie_object = Movies.query.get(movie_id)
-    movie_name = requested_movie_object.name
-    movie_timing = requested_movie_object.timing
-    movie_location = requested_movie_object.location
-    return 'somthing'
+    # After deleting the record, show the home page
+    all_data = Movies.query.all()  # Gives all data from Movies table
+    return render_template('home.html', all_data=all_data)
 
 if __name__ == '__main__':
     app.run(debug=True)
