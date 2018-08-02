@@ -3,17 +3,16 @@
 ## Screenshots:
 1. Home Page: 127.0.0.1:5000/
  <p align="center">
-  <img src="home.jpg" width=800 height=300>
+  <img src="home.jpg" width=800 height=500>
  </p>
  
- 2. Add Movie:
- Home Page: 127.0.0.1:5000/
- <p align="center">
+2. Add Movie:
+<p align="center">
   <img src="add.jpg" width=800 height=300>
- </p> 
+</p> 
  
- 3. Update/Delete Movie:
- Home Page: 127.0.0.1:5000/
- <p align="center">
-  <img src="update_delete.jpg" width=800 height=300>
- </p> 
+3. Update/Delete Movie:
+<p align="center">
+ <img src="update_delete.jpg" width=800 height=300>
+</p> 
+
