@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Add Movies</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/sign.css') }}" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="container">
+      <form class="form-signin" method="post" action="/process">  
+        <h2 class="form-signin-heading">Add Movies</h2>
+        <div class="form-group">
+          <label for="inputName" class="sr-only">Name</label>
+          <input type="text" id="inputName" name="name" class="form-control" placeholder="Name" required autofocus>
+        </div>
+
+        <div class="form-group">
+          <label for="inputName" class="sr-only">Timing</label>
+          <input type="text" id="inputName" name="timing" class="form-control" placeholder="Timing" required autofocus>
+        </div>
+
+        <div class="form-group">
+          <label for="inputName" class="sr-only">Location</label>
+          <input type="text" id="inputName" name="location" class="form-control" placeholder="Location" required autofocus>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+      </form>
+
+    </div> 
+
+  </body>
+</html>
