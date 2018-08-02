@@ -29,14 +29,14 @@ def index():
     return render_template('home.html', all_data=all_data)
 
 
-@app.route('/add')   # http://127.0.0.1:5000/sign
+@app.route('/add')   # http://127.0.0.1:5000/add
 def add():           # This url will be redirected
     return render_template('add_movie.html')
 
 
 @app.route('/process', methods=['POST'])  # http://127.0.0.1:5000/process
 def process():
-    # accessing posted data
+    # accessing posted database
     name = request.form['name']
     timing = request.form['timing']
     location = request.form['location']
@@ -77,7 +77,7 @@ def update():
         return render_template('edit_movie.html', name=movie_name, timing=movie_timing, location=movie_location, id=movie_id)
 
 
-@app.route('/delete', methods=['POST'])  # http://127.0.0.1:5000/process
+@app.route('/delete', methods=['POST'])  # http://127.0.0.1:5000/delete
 def delete():
     get_request_data = request.values
     movie_id = get_request_data['id'][0]
