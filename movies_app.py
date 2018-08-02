@@ -16,7 +16,7 @@ db = SQLAlchemy(app)
 # class in python will be table in database
 class Movies(db.Model):
     id = db.Column(db.Integer, primary_key=True)  # This is my primary key
-    name = db.Column(db.String(20))  # This field stored the name of the movie
+    name = db.Column(db.String(200))  # This field stored the name of the movie
     # time of the movie
     timing = db.Column(db.String(200))
     # place where the movie will be played
